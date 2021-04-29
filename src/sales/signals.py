@@ -13,3 +13,4 @@ def calculate_total_price(sender, instance, action, **kwargs):
 
     instance.total_price = total_price
     instance.save()
+
