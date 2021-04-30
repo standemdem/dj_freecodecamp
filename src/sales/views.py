@@ -8,11 +8,13 @@ import pandas as pd
 
 def home_view(request):
     form = SalesSearchForm(request.POST or None)
+    sales_df = None
 
     if request.method == 'POST':
         date_from = request.POST.get('date_from')
         date_to = request.POST.get('date_to')
         chart_type = request.POST.get('chart_type')
+<<<<<<< Updated upstream
         
         qs = Sale.objects.filter(created__date=date_from)
         obj = Sale.objects.get(id=1)
@@ -21,9 +23,28 @@ def home_view(request):
         print(df1)
     
     
+=======
+<<<<<<< Updated upstream
+        print('-------------------------IAMHERE-------------------------------',date_from, date_to, chart_type)
+=======
+        
+        qs = Sale.objects.filter(created__date__lte=date_to, created__date=date_from)
+        obj = Sale.objects.get(id=1)
+        print(qs)
+        print('############')
+        if len(qs)>0:
+            sales_df = pd.DataFrame(qs.values())
+            sales_df = sales_df.to_html()
+            print(sales_df)
+        else:
+            print('no data')
+    
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
     context = {
-        'form':form
+        'form':form,
+        'sales_df': sales_df
     }
     return render(request, 'sales/home.html', context)
 
