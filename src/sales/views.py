@@ -14,19 +14,6 @@ def home_view(request):
         date_from = request.POST.get('date_from')
         date_to = request.POST.get('date_to')
         chart_type = request.POST.get('chart_type')
-<<<<<<< Updated upstream
-        
-        qs = Sale.objects.filter(created__date=date_from)
-        obj = Sale.objects.get(id=1)
-        print('############')
-        df1 = pd.DataFrame(qs.values())
-        print(df1)
-    
-    
-=======
-<<<<<<< Updated upstream
-        print('-------------------------IAMHERE-------------------------------',date_from, date_to, chart_type)
-=======
         
         qs = Sale.objects.filter(created__date__lte=date_to, created__date=date_from)
         obj = Sale.objects.get(id=1)
@@ -38,9 +25,6 @@ def home_view(request):
             print(sales_df)
         else:
             print('no data')
-    
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
     context = {
         'form':form,
